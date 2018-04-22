@@ -2,5 +2,6 @@
   "routes": [{
     "path": "./components",
     "name": "Components"
-  }]
+  }],
+  "entry": "./src/app/entry.js"
 }
