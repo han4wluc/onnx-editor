@@ -1,31 +1,68 @@
+
 import React, { Component } from 'react';
+import { View, Text, StyleSheet } from 'react-primitives';
+import Icon from './Icon';
 
 export default class Node extends Component {
 
   static propExamples = [{
+    description: 'Unselected',
+    props: {
+      name: 'Input',
+    }
+  }, {
+    description: 'Selected',
+    props: {
+      name: 'Convolution',
+      selected: true,
+    }
+  }];
 
-  }]
+  static defaultProps = {
+    selected: false
+  };
 
   render() {
-    const { onClickSelect, onClickDelete, name, style } = this.props;
+    const {
+      onClickNode,
+      onPressRemove,
+      onPressAdd,
+      name,
+      style,
+      selected
+    } = this.props;
+    
+    const selectedState = selected ? {
+      backgroundColor:'#ddd'
+    } : {}
+
     return (
-      <div style={style}>
-        <div onClick={onClickDelete}>{'-'}</div>
-        <div onClick={onClickSelect} style={styles.container}>
-          { name }
-        </div>
-      </div>
+      <View style={[styles.container, style]}>
+        <View onClick={onClickNode} style={[styles.node,selectedState]}>
+          <Text>{ name }</Text>
+        </View>
+
+        { selected && <Icon onPress={onPressRemove} style={{marginLeft:8,marginRight:8}} title={'-'}/> }
+        { selected && <Icon onPress={onPressAdd} title={'+'}/> }
+      </View>
     );
   }
 }
 
 const styles = {
   container: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    borderWidth: 2,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  node: {
+    width: 120,
+    height: 40,
+    borderRadius: 12,
+    borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'black'
+    borderColor: '#ccc',
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 }
+

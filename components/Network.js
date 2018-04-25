@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Node from './Node';
+import Icon from './Icon';
+import { View, Text, Touchable } from 'react-primitives';
 
 const data = {
   "irVersion": "3",
@@ -166,38 +168,20 @@ export default class Network extends Component {
             onSelect && onSelect(node)
             // console.warn(node)
           }}
+          style={{marginBottom: 8}}
         />)
     })
     return (
-      <div style={style}>
-        <div onClick={this._onPressAdd}>{'+'}</div>
-        <Node
-          name={'input: ' + data.graph.input[0].name}
-          onClickSelect={()=>{
-            onSelect && onSelect(data.graph.input[0])
-            // console.warn(data.graph.input[0])
-          }}
-        />
+      <View style={[styles.container,style]}>
         { nodesComp }
-        <Node
-          name={'output: ' + data.graph.output[0].name}
-          onClickSelect={()=>{
-            // console.warn(data.graph.output[0])
-            onSelect && onSelect(data.graph.output[0])
-          }}
-        />
-      </div>
+        <Icon title={'+'}/>
+      </View>
     );
   }
 }
 
 const styles = {
   container: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    borderWidth: 2,
-    borderStyle: 'solid',
-    borderColor: 'black'
+    alignItems: 'center',
   }
 }
