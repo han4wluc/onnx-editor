@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import Edux, { connect } from './edux';
-
-import { View, Text } from 'react-primitives'
-import Network from '../../components/Network';
-import Summary from '../../components/Summary';
+import Node from './Node';
+import Icon from './Icon';
+import { View, Text } from '../primitives';
 
 const data = {
   "irVersion": "3",
@@ -106,40 +104,88 @@ const data = {
   ]
 }
 
-class Editor extends Component {
+class Network extends Component<any, any> {
+
+  static propExamples = [{
+    props: {
+      data,
+    }
+  }]
+
+  constructor(props : any) {
+    super(props);
+  
+    this.state = {
+      data: props.data,
+    };
+  }
+
+  _onPressAdd = () => {
+    const { data } = this.state;
+    this.setState({
+      data: {
+        ...data,
+        graph: {
+          ...data.graph,
+          node: data.graph.node.concat({
+            opType: 'Custom'
+          })
+        }
+      },
+    })
+  }
+
+  _onPressRemove = (i:number) => {
+    const { nodes } = this.state;
+
+    const { data } = this.state;
+    const newNode = data.graph.node.slice();
+    newNode.splice(i, 1);
+
+    this.setState({
+      data: {
+        ...data,
+        graph: {
+          ...data.graph,
+          node: newNode
+        }
+      },
+    })
+  }
+
   render() {
-    const { title, selectedData } = this.props.editor;
-    console.warn('selectedData', selectedData);
-    return (
-      <View onClick={()=>{
-        Edux.action('editor/setState', {
-          title: Math.random()
-        })
-      }}
-        style={{flexDirection: 'row'}}
-      >
-        <Network
-          data={data}
-          style={{marginLeft: 16, marginRight: 100}}
-          onSelect={(data)=>{
-            console.warn('data', data);
-            Edux.action('editor/setState', {
-              selectedData: data
-            })
+
+    const { data } = this.state;
+    const { style, onSelect } = this.props;
+    const nodesComp = data.graph.node.map((node:any, i: number)=>{
+      return (
+        <Node key={i}
+          name={node.opType}
+          onClickDelete={()=>{
+            this._onPressRemove(i)
           }}
+          onClickSelect={()=>{
+            onSelect && onSelect(node)
+            // console.warn(node)
+          }}
+          style={{marginBottom: 8}}
         />
-        <Summary data={selectedData}/>
+       )
+    })
+    return (
+      <View style={[styles.container,style]}>
+        { nodesComp }
+        <Icon title={'+'}/>
       </View>
     );
   }
 }
 
-export default connect({
-  namespace: 'editor',
-  stateMapper: (state) => {
-    return {
-      editor: state.editor
-    }
-  },
-  container: Editor,
-})
+const styles = {
+  container: {
+    alignItems: 'center',
+  }
+}
+
+export default Network;
+

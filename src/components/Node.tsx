@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-primitives';
+import { View, Text } from '../primitives';
 import Icon from './Icon';
 
-export default class Node extends Component {
+
+export default class Node extends Component<any,any> {
 
   static propExamples = [{
     description: 'Unselected',

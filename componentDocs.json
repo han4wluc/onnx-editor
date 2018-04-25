@@ -1,7 +1,7 @@
 {
   "routes": [{
-    "path": "./components",
+    "path": "./lib/components",
     "name": "Components"
   }],
-  "entry": "./src/app/entry.js"
+  "entry": "./lib/app/entry.js"
 }

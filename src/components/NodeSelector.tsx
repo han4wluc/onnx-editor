@@ -3,12 +3,11 @@
 import React, { Component } from 'react';
 
 import {
-  StyleSheet,
   View,
   Text,
-} from 'react-primitives';
+} from '../primitives';
 
-class NodeSelector extends Component {
+class NodeSelector extends Component<any,any> {
 
   static propExamples = [{
     props: {
@@ -53,7 +52,7 @@ class NodeSelector extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     width: 300,
     height: 400,
@@ -89,7 +88,7 @@ const styles = StyleSheet.create({
     top: 16,
     color: '#ccc'
   }
-});
+};
 
 
 export default NodeSelector;

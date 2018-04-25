@@ -1,14 +1,12 @@
 'use strict';
 
 import React, { Component } from 'react';
-
 import {
   StyleSheet,
   View,
   Text,
-} from 'react-primitives';
-
-class Icon extends Component {
+} from '../primitives';
+class Icon extends Component<any, any> {
 
   static propExamples = [{
     props: {
@@ -26,7 +24,7 @@ class Icon extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     width: 24,
     height: 24,
@@ -40,7 +38,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#aaa'
   }
-});
+};
 
 
 export default Icon;

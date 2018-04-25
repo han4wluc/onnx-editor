@@ -3,7 +3,7 @@ import { createStore, combineReducers } from 'redux';
 import { Provider as ConnectProvider, connect as reactReduxConnect } from 'react-redux';
 import React from 'react';
 
-class Edux2 {
+export class Edux2 {
   store: any;
   actions: any;
   reducers: any = {};
@@ -74,8 +74,8 @@ class Edux2 {
 }
 
 
-const edux2 = new Edux2();
-edux2.create({
+const edux22 = new Edux2();
+edux22.create({
   namespace: 'editor',
   actions: {
   },
@@ -86,22 +86,22 @@ edux2.create({
 })
 
 
-edux2.init();
+edux22.init();
 
-// console.log(edux2.store)
-// console.log(edux2.store.getState())
-// edux2.action('count/setState', {
+// console.log(edux22.store)
+// console.log(edux22.store.getState())
+// edux22.action('count/setState', {
 //   title: 'hello'
 // })
-// console.log(edux2.store.getState())
+// console.log(edux22.store.getState())
 
-export default edux2;
+export default edux22;
 
-export const Edux = edux2;
+export const Edux = edux22;
 export class Provider extends React.Component {
   render() {
     return (
-      <ConnectProvider store={edux2.store}>
+      <ConnectProvider store={edux22.store}>
         {this.props.children}
       </ConnectProvider>
     )
