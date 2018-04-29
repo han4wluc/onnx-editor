@@ -1,12 +1,12 @@
 'use strict';
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import {
   StyleSheet,
   View,
   Text,
 } from '../primitives';
-class Icon extends Component<any, any> {
+class Icon extends React.Component<any, any> {
 
   static propExamples = [{
     props: {

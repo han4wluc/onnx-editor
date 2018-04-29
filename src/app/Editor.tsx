@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import Edux, { connect } from './edux';
 
 import { View, Text } from '../primitives'
@@ -107,7 +107,7 @@ const data = {
   ]
 }
 
-class Editor extends Component<any,any> {
+class Editor extends React.Component<any,any> {
   render() {
     const { title, selectedData } = this.props.editor;
     console.warn('selectedData', selectedData);

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { View, Text, StyleSheet } from '../primitives';
 
-class Summary extends Component<any,any> {
+class Summary extends React.Component<any,any> {
 
   constructor(props:any) {
     super(props);

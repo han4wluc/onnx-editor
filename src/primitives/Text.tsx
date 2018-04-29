@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-// import { View } from 'react-native-web';
-
-class View extends React.Component<any, any> {
+class Text extends React.Component<any, any> {
   render() {
     const { style, children } = this.props;
 
@@ -20,7 +18,7 @@ class View extends React.Component<any, any> {
       <div {...this.props} style={{
         display: 'flex',
         ...s
-      }}>{children}</div>
+      }} >{children}</div>
     );
   }
 }
@@ -31,4 +29,10 @@ const styles = {
   },
 };
 
-export default View;
+// export {
+//   Text
+// };
+
+export default Text;
+
+// export default Text;

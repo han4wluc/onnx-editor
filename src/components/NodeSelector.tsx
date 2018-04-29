@@ -1,13 +1,14 @@
 'use strict';
 
-import React, { Component } from 'react';
+import * as React from 'react';
 
 import {
   View,
   Text,
+  TextInput
 } from '../primitives';
 
-class NodeSelector extends Component<any,any> {
+class NodeSelector extends React.Component<any,any> {
 
   static propExamples = [{
     props: {
@@ -42,7 +43,7 @@ class NodeSelector extends Component<any,any> {
     return (
       <View style={[styles.container, style]}>
         <Text style={styles.title}>{'Node Selector'}</Text>
-        <input style={{marginTop:16,}} type={'text'}/>
+        <TextInput style={{marginTop:16,}}/>
         <View style={styles.choiceContainer}>
           { comps }
         </View>

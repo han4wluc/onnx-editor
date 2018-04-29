@@ -1,7 +1,7 @@
 
 import { createStore, combineReducers } from 'redux';
 import { Provider as ConnectProvider, connect as reactReduxConnect } from 'react-redux';
-import React from 'react';
+import * as React from 'react';
 
 export class Edux2 {
   store: any;

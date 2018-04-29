@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-// import { View } from 'react-native-web';
-
-class View extends React.Component<any, any> {
+class TextInput extends React.Component<any, any> {
   render() {
     const { style, children } = this.props;
 
@@ -17,10 +15,10 @@ class View extends React.Component<any, any> {
     }
 
     return (
-      <div {...this.props} style={{
+      <input {...this.props} type={'text'} style={{
         display: 'flex',
         ...s
-      }}>{children}</div>
+      }} >{children}</input>
     );
   }
 }
@@ -31,4 +29,10 @@ const styles = {
   },
 };
 
-export default View;
+// export {
+//   TextInput
+// };
+
+export default TextInput;
+
+// export default Text;

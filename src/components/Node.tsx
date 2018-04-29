@@ -1,10 +1,10 @@
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import { View, Text } from '../primitives';
 import Icon from './Icon';
 
 
-export default class Node extends Component<any,any> {
+export default class Node extends React.Component<any,any> {
 
   static propExamples = [{
     description: 'Unselected',
@@ -53,7 +53,7 @@ export default class Node extends Component<any,any> {
 const styles = {
   container: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   node: {
     width: 120,

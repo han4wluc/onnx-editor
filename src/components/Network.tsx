@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import Node from './Node';
 import Icon from './Icon';
 import { View, Text } from '../primitives';
@@ -104,7 +104,7 @@ const data = {
   ]
 }
 
-class Network extends Component<any, any> {
+class Network extends React.Component<any, any> {
 
   static propExamples = [{
     props: {
@@ -184,6 +184,7 @@ class Network extends Component<any, any> {
 const styles = {
   container: {
     alignItems: 'center',
+    flexDirection: 'column'
   }
 }
 
