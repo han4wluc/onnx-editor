@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { View, Text } from '../primitives';
+import { View, Text, StyleSheet } from '../primitives';
 import Icon from './Icon';
 
 
@@ -50,7 +50,7 @@ export default class Node extends React.Component<any,any> {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -65,5 +65,5 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   }
-}
+});
 

@@ -60,7 +60,7 @@ class Summary extends React.Component<any,any> {
         const comps:any = Object.keys(attr).map((key:any)=>{
           return (
             <View style={{flexDirection:'row'}}>
-              <Text style={{marginRight:8}}>{`${key}:`}</Text>
+              <Text style={styles.marginTop}>{`${key}:`}</Text>
               <Text>{`${attr[key]}`}</Text>
             </View>
           )
@@ -94,9 +94,9 @@ class Summary extends React.Component<any,any> {
           <View style={styles.separator}/>
           <Text style={styles.subtitle}>{'Attributes'}</Text>
           { attributesComp }
-          <Text style={[styles.subtitle, {marginTop:8}]}>{'Inputs'}</Text>
+          <Text style={[styles.subtitle]}>{'Inputs'}</Text>
           { inputsComp }
-          <Text style={[styles.subtitle, {marginTop:8}]}>{'Outputs'}</Text>
+          <Text style={[styles.subtitle]}>{'Outputs'}</Text>
           { outputsComp }
         </View>
       );
@@ -126,13 +126,17 @@ const styles = StyleSheet.create({
   separator: {
     height:1,
     backgroundColor:'#ccc',
-    marginVertical: 8
+    // marginVertical: 8
+  },
+  marginTop: {
+    marginTop: 8
   },
   text: {
     color: '#aaa'
   },
   subtitle: {
-    textDecoration: 'underline'
+    textDecoration: 'underline',
+    marginTop: 8,
   }
 });
 

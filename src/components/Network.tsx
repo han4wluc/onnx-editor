@@ -104,7 +104,17 @@ const data = {
   ]
 }
 
-class Network extends React.Component<any, any> {
+import { ActionsType } from '../app/edux';
+
+
+export interface PropsType {
+  onSelect: ActionsType["selectNode"],
+  style: any,
+  data: any,
+  selectedNodeIndex: number,
+}
+
+class Network extends React.Component<PropsType, any> {
 
   static propExamples = [{
     props: {
@@ -156,17 +166,18 @@ class Network extends React.Component<any, any> {
   render() {
 
     const { data } = this.state;
-    const { style, onSelect } = this.props;
+    const { style, onSelect, selectedNodeIndex } = this.props;
+
     const nodesComp = data.graph.node.map((node:any, i: number)=>{
       return (
         <Node key={i}
           name={node.opType}
-          onClickDelete={()=>{
-            this._onPressRemove(i)
-          }}
-          onClickSelect={()=>{
-            onSelect && onSelect(node)
-            // console.warn(node)
+          // onClickDelete={()=>{
+          //   this._onPressRemove(i)
+          // }}
+          selected={i === selectedNodeIndex}
+          onClickNode={()=>{
+            onSelect && onSelect(i, node)
           }}
           style={{marginBottom: 8}}
         />
@@ -183,8 +194,9 @@ class Network extends React.Component<any, any> {
 
 const styles = {
   container: {
-    alignItems: 'center',
-    flexDirection: 'column'
+    // alignItems: 'center',
+    flexDirection: 'column',
+    
   }
 }
 

@@ -2,28 +2,54 @@
 import { createStore, combineReducers } from 'redux';
 import { Provider as ConnectProvider, connect as reactReduxConnect } from 'react-redux';
 import * as React from 'react';
+import _ from 'lodash';
+
+export type ActionsType = {
+   selectNode: (i: number, data: object) => void,
+   // selectNode2: (state: StateType, payload: {
+   //   i: number,
+   //   data: object,
+   // }) => StateType
+}
+
+export const Component = React.PureComponent;
 
 export class Edux2 {
   store: any;
-  actions: any;
+  actions: ActionsType = {
+    selectNode: (i, data) => {
+      // const newState: StateType = 
+        // this.actions.selectNode2(_.cloneDeep(this.store.getState()), { i, data })
+      // this.store.dispatch({
+      //   type: 'editor/setState',
+      //   payload: newState,
+      // })
+      this.setState({
+        selectedNodeIndex: i,
+        selectedNodeData: data,
+      });
+    },
+    // selectNode2: (state, payload) => {
+    //   state.selectedNodeIndex = payload.i;
+    //   return state;
+    // }
+  };
   reducers: any = {};
 
+  setState: (state: StateType) => void = (state) => {
+    this.store.dispatch({
+      type: 'editor/setState',
+      payload: state,
+    })
+  };
+
   constructor() {
-    this.actions = {
-      // add: () => {},
-      // minus: () => {}
-    };
-    // this.reducers = {};
-    // this.store = createStore({});
   }
   create = (props: {
     namespace: string,
     actions: any,
-    initialState: any;
-    // logics: any,
-    // reducers:any
+    initialState: StateType;
   }) => {
-    this.actions = props.actions;
 
     this.reducers[props.namespace] = (state: any = props.initialState, action: any) => {
       switch(action.type) {
@@ -41,38 +67,21 @@ export class Edux2 {
       }
     }
   }
-  // dl = (type: ActionTypes, payload?: object) => {
-  //   this.store.dispatch({
-  //     type,
-  //     payload,
-  //   })
-  // }
-
-  getActions = () => {
-    return this.actions;
-  }
-
 
   init = () => {
     const store = createStore(combineReducers(this.reducers));
     this.store = store;
   }
 
-  // getStore = () => {
-  //   return this.store;
-  // }
-
-  action = (type: string, payload?: object) => {
-    this.store.dispatch({
-      type,
-      payload,
-    })
-  }
-  // getActions () => void = {
-    // return this.actions;
-  // }
 }
 
+
+export type StateType = {
+  title?: string,
+  selectedData?: any,
+  selectedNodeIndex?: number,
+  selectedNodeData?: object
+}
 
 const edux22 = new Edux2();
 edux22.create({
@@ -81,19 +90,14 @@ edux22.create({
   },
   initialState: {
     title: 'Editor',
-    selectedData: {}
+    selectedData: {},
+    selectedNodeIndex: 0,
+    selectedNodeData: undefined,
   },
 })
 
 
 edux22.init();
-
-// console.log(edux22.store)
-// console.log(edux22.store.getState())
-// edux22.action('count/setState', {
-//   title: 'hello'
-// })
-// console.log(edux22.store.getState())
 
 export default edux22;
 
@@ -111,7 +115,6 @@ export class Provider extends React.Component {
 export const connect = function(props: {
   namespace: string,
   stateMapper: any,
-  // actions: any = {},
   container: any
 }) {
   if (!props.namespace) {
@@ -125,12 +128,13 @@ export const connect = function(props: {
       };
     };
   }
-  // const allActions = {
-  //   ...props.actions,
-  //   logic,
-  // };
   return reactReduxConnect(props.stateMapper)(props.container);
 };
+
+
+
+
+
 
 
 

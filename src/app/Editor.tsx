@@ -6,6 +6,7 @@ import { View, Text } from '../primitives'
 import Network from '../components/Network';
 import Summary from '../components/Summary';
 
+
 const data = {
   "irVersion": "3",
   "producerName": "onnx-examples",
@@ -109,25 +110,21 @@ const data = {
 
 class Editor extends React.Component<any,any> {
   render() {
-    const { title, selectedData } = this.props.editor;
-    console.warn('selectedData', selectedData);
+    const { title, selectedData, selectedNodeIndex, selectedNodeData } = this.props.editor;
+    console.warn('selectedNodeIndex', selectedNodeIndex);
     return (
       <View onClick={()=>{
-        Edux.action('editor/setState', {
-          title: Math.random()
-        })
+        // Edux.action('editor/setState', {
+        //   title: Math.random()
+        // })
       }}
         style={{flexDirection: 'row'}}
       >
         <Network
           data={data}
           style={{marginLeft: 16, marginRight: 100}}
-          onSelect={(data:any)=>{
-            console.warn('data', data);
-            Edux.action('editor/setState', {
-              selectedData: data
-            })
-          }}
+          onSelect={Edux.actions.selectNode}
+          selectedNodeIndex={selectedNodeIndex}
         />
         <Summary data={selectedData}/>
       </View>

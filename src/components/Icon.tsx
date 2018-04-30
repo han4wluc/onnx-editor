@@ -1,12 +1,13 @@
 'use strict';
 
-import * as React from 'react';
+import React from 'react';
+import { Component } from '../app/edux';
 import {
   StyleSheet,
   View,
   Text,
 } from '../primitives';
-class Icon extends React.Component<any, any> {
+class Icon extends Component<any, any> {
 
   static propExamples = [{
     props: {
