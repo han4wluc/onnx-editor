@@ -6,10 +6,8 @@ import _ from 'lodash';
 
 export type ActionsType = {
    selectNode: (i: number, data: object) => void,
-   // selectNode2: (state: StateType, payload: {
-   //   i: number,
-   //   data: object,
-   // }) => StateType
+   onPressAddNode: () => void,
+   onPressHideNode: () => void,
 }
 
 export const Component = React.PureComponent;
@@ -18,21 +16,21 @@ export class Edux2 {
   store: any;
   actions: ActionsType = {
     selectNode: (i, data) => {
-      // const newState: StateType = 
-        // this.actions.selectNode2(_.cloneDeep(this.store.getState()), { i, data })
-      // this.store.dispatch({
-      //   type: 'editor/setState',
-      //   payload: newState,
-      // })
       this.setState({
         selectedNodeIndex: i,
         selectedNodeData: data,
       });
     },
-    // selectNode2: (state, payload) => {
-    //   state.selectedNodeIndex = payload.i;
-    //   return state;
-    // }
+    onPressAddNode: () => {
+      this.setState({
+        showNodeSelector: true,
+      });
+    },
+    onPressHideNode: () => {
+      this.setState({
+        showNodeSelector: false,
+      });
+    }
   };
   reducers: any = {};
 
@@ -80,7 +78,8 @@ export type StateType = {
   title?: string,
   selectedData?: any,
   selectedNodeIndex?: number,
-  selectedNodeData?: object
+  selectedNodeData?: object,
+  showNodeSelector?: boolean,
 }
 
 const edux22 = new Edux2();
@@ -93,6 +92,7 @@ edux22.create({
     selectedData: {},
     selectedNodeIndex: 0,
     selectedNodeData: undefined,
+    showNodeSelector: false,
   },
 })
 
@@ -130,13 +130,6 @@ export const connect = function(props: {
   }
   return reactReduxConnect(props.stateMapper)(props.container);
 };
-
-
-
-
-
-
-
 
 
 
